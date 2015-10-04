@@ -596,6 +596,37 @@ Ember.I18n.translations = {
 }
 ````
 
+Alternatively use your environment config and set the `ember-validations` object with your translations:
+
+```js
+…
+var ENV = {
+  …
+   'ember-validations': {
+      messages: {
+        inclusion: "n'est pas dans la liste",
+        …
+      }
+  },
+  …
+};
+…
+```
+
+If you want to use your environment translation in your tests, you have to manually call the initializer:
+
+```js
+import {initialize} from 'ember-validations/initializers/ember-validations';
+
+moduleForComponent('x-foo', 'Integration | Component | x-foo', {
+  integration: true,
+  beforeEach: function () {
+    initialize(this.registry);
+  }
+});
+```
+
+
 ## Other Resources ##
 
 * [Six-part screencast series on ember-validations](https://www.emberscreencasts.com/tags/form-validations)
